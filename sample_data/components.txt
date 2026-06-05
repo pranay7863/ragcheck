@@ -1,0 +1,1 @@
+The key components of RAG are: a document store, an embedding model, a vector database, and a large language model. The embedding model converts text into dense vectors. The vector database stores these vectors for efficient similarity search. The LLM generates the final answer.

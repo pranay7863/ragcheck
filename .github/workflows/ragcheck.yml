@@ -1,0 +1,25 @@
+name: RAG Quality Check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  ragcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: curl -LsSf https://astral.sh/uv/install.sh | sh
+      - run: uv sync
+      - run: uv run ragcheck run --docs ./data --ci --min-score 0.80
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ragcheck-report
+          path: ragcheck_report.html

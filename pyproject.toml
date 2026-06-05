@@ -1,0 +1,83 @@
+[project]
+name = "ragcheck-cli"
+version = "0.2.0"
+description = "Lighthouse for RAG systems — diagnose and fix your retrieval pipeline"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+authors = [
+    {name = "Pranay Mane", email = "pranaymane78@gmail.com"},
+]
+keywords = ["rag", "llm", "evaluation", "retrieval", "ai", "chunking", "diagnostics"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Quality Assurance",
+]
+
+dependencies = [
+    "typer>=0.12.0",
+    "rich>=13.0.0",
+    "jinja2>=3.1.0",
+    "nltk>=3.9.0",
+    "pydantic>=2.5.0",
+    "litellm>=1.0.0",
+    "sentence-transformers>=2.2.0",
+    "chromadb>=0.4.0",
+    "PyYAML>=6.0",
+    "transformers>=4.30.0",
+]
+
+[project.optional-dependencies]
+pdf = ["PyPDF2>=3.0.0"]
+export = ["playwright>=1.40.0"]
+ragas = ["ragas>=0.4.0,<0.5.0"]
+
+[project.scripts]
+ragcheck = "ragcheck.cli:app"
+
+[project.urls]
+Homepage = "https://github.com/pranay7863/ragcheck"
+Documentation = "https://github.com/pranay7863/ragcheck/blob/main/README.md"
+Repository = "https://github.com/pranay7863/ragcheck"
+Issues = "https://github.com/pranay7863/ragcheck/issues"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ragcheck"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP", "B", "C4", "SIM"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.3",
+    "pytest-cov>=7.1.0",
+    "ruff>=0.15.15",
+    "twine>=6.2.0",
+]

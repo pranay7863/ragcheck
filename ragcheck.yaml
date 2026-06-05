@@ -1,0 +1,27 @@
+project_name: legal-rag-test
+docs_path: data
+chunking:
+  strategy: recursive
+  chunk_size: 512
+  chunk_overlap: 128
+  model: all-MiniLM-L6-v2
+llm:
+  provider: ollama
+  model: phi3:mini
+  api_key: null
+  temperature: 0.3
+  max_tokens: 1024
+retrieval:
+  top_k: 5
+  similarity_threshold: 0.7
+  vector_db: chromadb
+  use_reranker: false
+  reranker_model: BAAI/bge-reranker-base
+report:
+  format: html
+  include_heatmap: true
+  include_chunk_viz: true
+  include_recommendations: true
+  theme: light
+max_test_questions: 50
+ci_threshold: 0.8
