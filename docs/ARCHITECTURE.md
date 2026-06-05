@@ -34,7 +34,7 @@ ragcheck CLI (Typer + Rich)
 
 ## Design Principles
 
-1. **Zero-infrastructure**: `pip install ragcheck` works out of the box
+1. **Zero-infrastructure**: `pip install ragcheck-cli` works out of the box
 2. **Single-file output**: HTML report is one file, no server needed
 3. **Framework agnostic**: No LangChain or LlamaIndex dependency in core
 4. **Offline-first**: Core metrics use local models; LLM calls are optional
